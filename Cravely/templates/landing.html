@@ -1,0 +1,82 @@
+[[extend 'layout.html']]
+
+<style>
+  .grid {
+    font-family: "Georgia", serif;
+    color: #8f8f8f;
+  }
+
+  .card {
+    background-color: rgba(0, 0, 0, 0.504); /*semi-transparent white*/
+    /* background-color: rgba(227, 224, 224, 0.504); */
+    color: #ff6f61;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px); /* optional: glassy effect */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border */
+  }
+  .card p {
+    color: #ffffff;
+  }
+</style>
+
+<div class="spline-background">
+  <spline-viewer
+    url="https://prod.spline.design/h08wr-DE7RV1oR07/scene.splinecode"
+  ></spline-viewer>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Welcome to Cravely</h1>
+  <p>
+    Your ultimate recipe manager. Create, share, and discover amazing recipes
+    with our easy-to-use platform.
+  </p>
+
+  <a href="[[=URL('/Cravely/recipes')]]" class="btn btn-primary"
+    >Browse Recipes</a
+  >
+</section>
+
+<!-- Content Cards -->
+<section class="grid">
+  <div class="card">
+    <h2>Recipe Collection</h2>
+    <p>
+      Browse through thousands of recipes from our community. Find your next
+      favorite dish and start cooking today.
+    </p>
+    <a href="[[=URL('/Cravely/recipes')]]" class="btn btn-outline mt-2"
+      >View Recipes</a
+    >
+  </div>
+
+  <div class="card">
+    <h2>Ingredient Manager</h2>
+    <p>
+      Keep track of ingredients, their nutritional information, and use them
+      across multiple recipes.
+    </p>
+    <a href="[[=URL('/Cravely/ingredients')]]" class="btn btn-outline mt-2"
+      >Manage Ingredients</a
+    >
+  </div>
+
+  <div class="card">
+    <h2>Share & Discover</h2>
+    <p>
+      Share your own recipes with the community and discover new cooking
+      techniques from other food enthusiasts.
+    </p>
+    [[if user:]]
+    <a href="[[=URL('upload')]]" class="btn btn-outline mt-2">Create Recipe</a>
+    [[else:]]
+    <a href="[[=URL('auth/register')]]" class="btn btn-outline mt-2"
+      >Join Community</a
+    >
+    [[pass]]
+  </div>
+</section>

@@ -1,0 +1,156 @@
+[[extend 'layout.html']] [[block page_head]]
+<link
+  href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  rel="stylesheet"
+/>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+[[end]]
+
+<div id="myapp" class="max-w-5xl mx-auto py-10 px-6 text-white">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-4xl font-extrabold">🍴 Browse Recipes</h1>
+    <a
+      href="[[=URL('/Cravely/upload')]]"
+      class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+    >
+      Create New Recipe
+    </a>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="flex flex-row mb-10">
+    <input
+      v-model="name_search"
+      @input="type_search = ''"
+      type="text"
+      placeholder="🔍 Search recipes by name..."
+      class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 mr-2"
+    />
+    <input
+      v-model="type_search"
+      @input="name_search = ''"
+      type="text"
+      placeholder="🔍 Search recipes by type..."
+      class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+    />
+  </div>
+
+  <!-- Recipe Cards -->
+  <div class="space-y-10">
+    <div
+      v-for="recipe in recipes_list"
+      :key="recipe.id"
+      class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-700 hover:shadow-xl transition"
+    >
+      <div class="flex">
+        <div class="w-full">
+          <!-- Header -->
+          <!-- <div class="bg-pink-200  px-4 py-3 text-white font-bold text-xl">
+            🍽️ {{ recipe.name }}
+          </div> -->
+          <div
+            class="px-4 py-3 text-white font-bold text-xl"
+            style="background-color: #ff5e7e"
+          >
+            🍽️ {{ recipe.name }}
+          </div>
+
+          <!-- Metadata -->
+          <div class="flex flex-row pl-6 pt-4">
+            <div>
+              <img
+                v-if="recipe.image"
+                :src="'/Cravely/uploads/' + recipe.image"
+                class="max-h-48 rounded mb-4"
+                alt="Recipe Image"
+              />
+              <img
+                v-else
+                src="/Cravely/static/No_image_available.png"
+                class="max-h-48 rounded mb-4"
+                alt="No Image"
+              />
+            </div>
+            <div
+              class="flex flex-col justify-center px-10 py-4 space-y-1 text-m text-gray-300"
+            >
+              <p><strong>Type:</strong> {{ recipe.type }}</p>
+              <p><strong>Author:</strong> {{ recipe.author }}</p>
+              <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+              <p>
+                <strong>Total Calories:</strong> {{ recipe.total_calories }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="px-6 mt-4">
+            <h3 class="text-sm text-gray-400 font-semibold mb-1">
+              Description
+            </h3>
+            <p class="bg-gray-900 text-white text-sm rounded p-3">
+              {{ recipe.description }}
+            </p>
+          </div>
+
+          <!-- Ingredients (Collapsible) -->
+          <div class="px-6 mt-4">
+            <details class="bg-gray-900 rounded p-3 text-sm">
+              <summary
+                class="cursor-pointer font-semibold hover:text-green-400 transition"
+              >
+                Ingredients
+              </summary>
+              <ul class="list-disc list-inside text-white mt-2">
+                <li v-for="ing in recipe.ingredients" :key="ing.name">
+                  {{ ing.name }} — {{ ing.quantity_per_serving }} {{ ing.unit }}
+                </li>
+              </ul>
+            </details>
+          </div>
+
+          <!-- Instructions (Collapsible) -->
+          <div class="px-6 mt-4 pb-4">
+            <details class="bg-gray-900 rounded p-3 text-sm">
+              <summary
+                class="cursor-pointer font-semibold hover:text-green-400 transition"
+              >
+                Instructions
+              </summary>
+              <p class="mt-2 whitespace-pre-wrap">
+                {{ recipe.instruction_steps }}
+              </p>
+            </details>
+          </div>
+
+          <!-- Edit/Delete -->
+          <div v-if="recipe.author == user_id" class="px-6 pb-6 flex gap-3">
+            <button
+              @click="editRecipe(recipe.id)"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            >
+              ✏️ Edit
+            </button>
+            <button
+              @click="deleteRecipe(recipe.id)"
+              class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+            >
+              🗑️ Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="recipes_list.length === 0"
+      class="text-gray-400 italic mt-10 text-center"
+    >
+      No recipes found.
+    </div>
+  </div>
+</div>
+
+[[block page_scripts]]
+<script src="/Cravely/static/js/recipes.js"></script>
+[[end]]

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head class="flex">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  </head>
+
+  <body class="hscreen bg-sky-200 self-center">
+    <div class="grid grid-cols-3">
+      <div class="col-span-2 flex align-center justify-center text-center">
+        <div class="flex flex-col">
+          <div id="box" class="mt-[40vh] text-white text-7xl font-bold">
+            Cravely
+          </div>
+          <script>
+            // animate to move cravely from bottom up
+            gsap.from("#box", {
+              y: 50,
+              opacity: 0,
+              duration: 2,
+              ease: "power2.inOut",
+            });
+          </script>
+          <div class="flex text-white text-3xl font-semibold py-5">
+            Crave. Cook. Restroom.
+          </div>
+          <div class="flex flex-row justify-center align-center justify-center">
+            <div class="rounded-full px-5 py-1 mx-5 text-lg bg-sky-500">
+              Sign In
+            </div>
+            <div class="rounded-full px-5 py-1 mx-5 text-lg bg-sky-500">
+              Sign Out
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-1 flex items-end justify-center">
+        <img src="./bowl-svgrepo-com.svg" class="w-full mt-50" />
+      </div>
+    </div>
+  </body>
+</html>

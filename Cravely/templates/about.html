@@ -1,0 +1,145 @@
+[[extend 'layout.html']]
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  .features {
+    font-family: "Georgia", serif;
+  }
+
+  .card-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Allows wrapping on smaller screens */
+    margin-top: 2rem;
+  }
+
+  .card {
+    flex: 1 1 300px;
+    /* Flexible layout with a min width */
+    max-width: 350px;
+    background-color: rgba(45, 45, 45, 0.3);
+    color: #ff6f61;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card p {
+    color: #ffffff;
+  }
+
+  .explore {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .button-group a {
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 1rem;
+    min-width: 200px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover,
+  .btn-outline:hover {
+    opacity: 0.85;
+  }
+
+  .heading {
+    padding-bottom: 40px;
+    padding-top: 20px;
+  }
+
+  .mission p {
+    padding-top: 20px;
+  }
+
+  .features {
+    padding-top: 20px;
+  }
+
+  .explore p {
+    padding-top: 20px;
+  }
+</style>
+
+<section class="mission">
+  <h1>Our Mission</h1>
+  <p>
+    At Cravely, we believe that cooking should be accessible, enyojable, and
+    collaborative. Our platform is designed to help food lovers of all skill
+    levels find inspiration, organize their ideas, and connect with a cooking
+    community.
+  </p>
+  <p>
+    We created a space where ingredients and recipes are shared resources,
+    allowing everyone to build upon each other's creativity while maintaining
+    ownership of their unique contributions
+  </p>
+</section>
+
+<section class="features">
+  <h1>Key Features</h1>
+  <div class="card-container">
+    <div class="card">
+      <h2>Ingredient Library</h2>
+      <p>
+        Search our extensive ingredient database or add new ingredients to our
+        shared library. Once added, ingredients become available to all users.
+      </p>
+    </div>
+    <div class="card">
+      <h2>Recipe Discovery</h2>
+      <p>
+        Find recipes by name, type, or ingredients. All recipes are public,
+        making it easy to discover new culinary creations from our community.
+      </p>
+    </div>
+    <div class="card">
+      <h2>Recipe Creation</h2>
+      <p>
+        Create and edit your own recipes. While you can't modify others'
+        recipes, you can use them as inspiration for your own culinary
+        adventures.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="explore">
+  <h1>Join Our Culinary Community</h1>
+  <p>
+    Whether you're a professional chef or a cooking novice, Cravely is built for
+    you. Start exploring recipes, sharing your creations, and connection with
+    fellow food enthusiasts today.
+  </p>
+  <div class="button-group">
+    <a href="[[=URL('/Cravely/recipes')]]" class="btn btn-primary"
+      >Explore Recipes</a
+    >
+    <a href="[[=URL('/Cravely/ingredients')]]" class="btn btn-outline"
+      >Browse Ingredients</a
+    >
+  </div>
+</section>

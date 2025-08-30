@@ -1,0 +1,59 @@
+timestamp: 2025-06-04T12:00:24.048648
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "username" CHAR(512) UNIQUE,
+    "email" CHAR(512) UNIQUE,
+    "password" CHAR(512),
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "sso_id" CHAR(512),
+    "action_token" CHAR(512),
+    "last_password_change" TIMESTAMP
+);
+success!
+timestamp: 2025-06-04T12:00:24.075278
+CREATE TABLE "auth_user_tag_groups"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tagpath" CHAR(512),
+    "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
+);
+success!
+timestamp: 2025-06-04T12:00:24.107110
+CREATE TABLE "ingredients"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512) UNIQUE,
+    "unit" CHAR(512),
+    "calories_per_unit" INTEGER,
+    "description" TEXT,
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "is_active" CHAR(1)
+);
+success!
+timestamp: 2025-06-04T12:00:24.124939
+CREATE TABLE "recipes"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "type" CHAR(512),
+    "description" TEXT,
+    "image" CHAR(512),
+    "author" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "instruction_steps" TEXT,
+    "servings" INTEGER,
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "is_active" CHAR(1)
+);
+success!
+timestamp: 2025-06-04T12:00:24.147388
+CREATE TABLE "linking"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "recipe_id" INTEGER REFERENCES "recipes" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "ingredient_id" INTEGER REFERENCES "ingredients" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "quantity_per_serving" DOUBLE
+);
+success!

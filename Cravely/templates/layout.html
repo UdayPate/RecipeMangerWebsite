@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cravely - Recipe Manager</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="[[=URL('static', 'css/landing_page.css')]]" />
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+
+  [[block page_head]]
+  <!-- individual pages can customize header here -->
+  [[end]]
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="[[=URL('landing')]]" class="logo">Cravely</a>
+
+      <ul class="nav-menu">
+        <li><a href="[[=URL('landing')]]" class="nav-link">Home</a></li>
+        <li>
+          <a href="[[=URL('/Cravely/recipes')]]" class="nav-link">Recipes</a>
+        </li>
+        <li>
+          <a href="[[=URL('/Cravely/ingredients')]]" class="nav-link">Ingredients</a>
+        </li>
+        <li><a href="[[=URL('/Cravely/about')]]" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="auth-buttons">
+        [[if globals().get('user'):]]
+        <span style="display: flex; align-items: center">Welcome,
+          [[=globals().get('user',{}).get('first_name','User')]]!</span>
+        <a href="[[=URL('auth/logout')]]" class="btn btn-outline">Sign Out</a>
+        [[else:]]
+        <a href="[[=URL('auth/login')]]" class="btn btn-outline">Sign In</a>
+        <a href="[[=URL('auth/register')]]" class="btn btn-primary">Sign Up</a>
+        [[pass]]
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  [[if globals().get('flash'):]]
+  <div class="container">
+    <div class="flash-message flash-info">[[=globals().get('flash')]]</div>
+  </div>
+  [[pass]]
+
+  <!-- Main Content -->
+  <main class="container">[[include]]</main>
+
+  <!-- JavaScript -->
+  <script src="[[=URL('static', 'js/utils.js')]]"></script>
+  [[block page_scripts]]<!-- individual pages can add scripts here -->[[end]]
+</body>
+
+</html>

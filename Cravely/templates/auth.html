@@ -1,0 +1,89 @@
+[[extend 'layout.html']]
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+  body {
+    /* background-color: #6aa5d9; */
+    background-color: #1a1a1a;
+    color: #000000;
+    /* font-family: 'Press Start 2P', monospace; */
+  }
+
+  .auth-container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 3px double rgb(146, 146, 146);
+    background-color: #fefefe;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 80%; /* or try 70%, 60%, etc. */
+    margin: 0 auto 20px auto; /* center and add space below */
+    display: block; /* required to let margin:auto work */
+    padding: 10px;
+    font-family: "Press Start 2P", monospace;
+    background: rgba(232, 240, 254, 255);
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+  }
+
+  input[type="submit"],
+  button {
+    width: 80%; /* match input field width */
+    display: block;
+    margin: 0 auto 20px auto; /* center it */
+    background-color: rgb(227, 81, 81);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-family: "Press Start 2P", monospace;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover,
+  button:hover {
+    background-color: #0a0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .py4web-validation-error {
+    color: red;
+    font-size: 0.7em;
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }
+  .auth-container form {
+    text-align: center;
+  }
+
+  .auth-container form a {
+    display: inline-block;
+    margin: 10px 10px 0 10px;
+    padding: 8px 16px;
+    /* background-color: #000000; */
+    color: rgb(0, 0, 0);
+    /* border-radius: 5px; */
+    text-decoration: underline;
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.6em;
+    transition: background-color 0.3s ease;
+  }
+  .auth-container form a:hover {
+    background-color: #ff3b3b;
+  }
+</style>
+
+<div class="auth-container">
+  <h2 style="text-align: center; margin-bottom: 30px">LOGIN</h2>
+  [[=form]]
+</div>
